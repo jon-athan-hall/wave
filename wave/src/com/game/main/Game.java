@@ -23,12 +23,15 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	
 	public Game() {
+		handler = new Handler();
+		
+		this.addKeyListener(new KeyInput(handler));
+		
 		new Window(WIDTH, HEIGHT, "Wave", this);
 		
-		handler = new Handler();
 		r = new Random();
 		
-		handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT),ID.Player));
+		handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32,ID.Player));
 	}
 
 	/**
