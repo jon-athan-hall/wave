@@ -13,6 +13,9 @@ public class Game extends Canvas implements Runnable {
 	
 	public static final int WIDTH = 640, HEIGHT = WIDTH * 9 / 16;
 	
+	private Thread thread;
+	private boolean running = false;
+	
 	public Game() {
 		new Window(WIDTH, HEIGHT, "Wave", this);
 	}
@@ -24,7 +27,24 @@ public class Game extends Canvas implements Runnable {
 	 * consistency.
 	 */
 	public synchronized void start() {
-		
+		/**
+		 * Normally there would be more than one thread running.
+		 */
+		thread = new Thread(this);
+		thread.start();
+		running = true;
+	}
+	
+	public synchronized void stop() {
+		try {
+			/**
+			 * Wait for thread to die before continuing.
+			 */
+			thread.join();
+			running = false;
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void run() {
