@@ -56,17 +56,17 @@ public class Game extends Canvas implements Runnable {
 		 * whatever the desired frames (or loops or ticks) per second should
 		 * be. This ensures a slow, steady pause in the game loop.
 		 */
-		long lastTime = System.nanoTime();
-		double amountOfTicks = 60.0;
-		double ns = 1000000000 / amountOfTicks;
+		long lastLoopTime = System.nanoTime();
+		final int TARGET_FPS = 60;
+		final double OPTIMAL_TIME = 1000000000 / TARGET_FPS;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
 		int frames = 0;
 		
 		while(running) {
 			long now = System.nanoTime();
-			delta += (now - lastTime) / ns;
-			lastTime = now;
+			delta += (now - lastLoopTime) / OPTIMAL_TIME;
+			lastLoopTime = now;
 			
 			/**
 			 * Once the difference in time has grown to be over 1 "gametick",
@@ -83,9 +83,8 @@ public class Game extends Canvas implements Runnable {
 			 */
 			if(running) {
 				render();
+				frames++;
 			}
-			
-			frames++;
 			
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
