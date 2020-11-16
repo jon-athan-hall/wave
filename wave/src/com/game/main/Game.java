@@ -53,8 +53,8 @@ public class Game extends Canvas implements Runnable {
 	public void run() {
 		/**
 		 * Classic game loop code used everywhere. Set the amountOfTicks to
-		 * whatever the desired frames (or loops or ticks) per second should
-		 * be. This ensures a slow, steady pause in the game loop.
+		 * whatever the desired ticks per second is desired. This ensures
+		 * a slow, steady pause in the game loop.
 		 */
 		long lastLoopTime = System.nanoTime();
 		final int TARGET_FPS = 60;
@@ -96,8 +96,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	/**
-	 * Private methods are available to the current class as well
-	 * as all subclasses.
+	 * Private methods are available to the current class only.
 	 */
 	private void tick() {
 		
