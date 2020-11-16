@@ -61,6 +61,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	public void run() {
+		this.requestFocus();
 		/**
 		 * Classic game loop code used everywhere. Set the amountOfTicks to
 		 * whatever the desired ticks per second is desired. This ensures
