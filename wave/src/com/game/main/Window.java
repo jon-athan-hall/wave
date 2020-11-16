@@ -26,9 +26,23 @@ public class Window extends Canvas {
 	public Window(int width, int height, String title, Game game) {
 		JFrame frame = new JFrame(title);
 		
-		frame.setPreferredSize(new Dimension(width, height));
-		frame.setMinimumSize(new Dimension(width, height));
-		frame.setMaximumSize(new Dimension(width, height));
+		/**
+		 * Add the Game component to the Window, then constrain the
+		 * Window size based its subcomponents.
+		 */
+		frame.add(game);
+		frame.pack();
+		
+		/**
+		 * Calculate the provided width and height to include the borders
+		 * and menu bars of the actual program window.
+		 */
+		int xInsets = frame.getInsets().left + frame.getInsets().right;
+		int yInsets = frame.getInsets().top + frame.getInsets().bottom;
+		
+		frame.setPreferredSize(new Dimension(width + xInsets, height + yInsets));
+		frame.setMinimumSize(new Dimension(width + xInsets, height + yInsets));
+		frame.setMaximumSize(new Dimension(width + xInsets, height + yInsets));
 		
 		/**
 		 * Make sure the corner X button actually stops the game.
@@ -36,8 +50,9 @@ public class Window extends Canvas {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
-		frame.add(game);
+		
 		frame.setVisible(true);
+		
 		game.start();
 	}
 
