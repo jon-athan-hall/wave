@@ -16,11 +16,13 @@ public class Game extends Canvas implements Runnable {
 	
 	public static final int WIDTH = 640, HEIGHT = WIDTH * 9 / 16;
 	
+	private Handler handler;
 	private Thread thread;
 	private boolean running = false;
 	
 	public Game() {
 		new Window(WIDTH, HEIGHT, "Wave", this);
+		handler = new Handler();
 	}
 
 	/**
@@ -99,7 +101,7 @@ public class Game extends Canvas implements Runnable {
 	 * Private methods are available to the current class only.
 	 */
 	private void tick() {
-		
+		handler.tick();
 	}
 	
 	private void render() {
@@ -122,6 +124,8 @@ public class Game extends Canvas implements Runnable {
 		
 		g.setColor(Color.black);
 		g.fillRect(0,  0,  WIDTH,  HEIGHT);
+		
+		handler.render(g);
 		
 		/**
 		 * Graphics object can no longer be used after dispose is called
