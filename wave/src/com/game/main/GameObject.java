@@ -1,6 +1,7 @@
 package com.game.main;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 /**
  * GameObject is a superclass for all objects that exists and interact
@@ -27,6 +28,12 @@ public abstract class GameObject {
 	
 	public abstract void tick();
 	public abstract void render(Graphics g);
+	
+	/**
+	 * The Rectangle class in the JRE has a method called intersects
+	 * which will help with collision detection.
+	 */
+	public abstract Rectangle getBounds();
 	
 	/**
 	 * Long list of basic getters and setters for GameObject. They are

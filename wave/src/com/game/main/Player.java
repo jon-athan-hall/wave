@@ -2,11 +2,19 @@ package com.game.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class Player extends GameObject {
+	
+	Handler handler;
 
-	public Player(int x, int y, ID id) {
+	public Player(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
+		this.handler = handler;
+	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, 32, 32);
 	}
 	
 	public void tick() {
@@ -15,6 +23,24 @@ public class Player extends GameObject {
 		
 		x = Game.clamp(x, 0, Game.WIDTH - 32);
 		y = Game.clamp(y, 0, Game.HEIGHT - 32);
+		
+		checkCollisions();
+	}
+	
+	private void checkCollisions() {
+		for(int i = 0; i < handler.object.size(); i++) {
+			GameObject o = handler.object.get(i);
+			
+			/**
+			 * Check for intersections between this Player object
+			 * and all BasicEnemy objects on screen.
+			 */
+			if(o.getID() == ID.BasicEnemy) {
+				if(getBounds().intersects(o.getBounds())) {
+					HUD.HEALTH -= 2;
+				}
+			}
+		}
 	}
 	
 	public void render(Graphics g) {
