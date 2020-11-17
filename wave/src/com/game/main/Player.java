@@ -5,12 +5,9 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class Player extends GameObject {
-	
-	Handler handler;
 
 	public Player(int x, int y, ID id, Handler handler) {
-		super(x, y, id);
-		this.handler = handler;
+		super(x, y, id, handler);
 	}
 	
 	public Rectangle getBounds() {

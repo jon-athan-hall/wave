@@ -19,11 +19,19 @@ public abstract class GameObject {
 	protected int x, y;
 	protected ID id;
 	protected int velX, velY;
+	protected Handler handler;
 	
-	public GameObject(int x, int y, ID id) {
+	public GameObject(int x, int y, ID id, Handler handler) {
 		this.x = x;
 		this.y = y;
 		this.id = id;
+		
+		/**
+		 * Store the Handler instance and automatically add this
+		 * object instance to the handler.
+		 */
+		this.handler = handler;
+		handler.addObject(this);
 	}
 	
 	public abstract void tick();
