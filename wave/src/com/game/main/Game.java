@@ -152,6 +152,15 @@ public class Game extends Canvas implements Runnable {
 		bs.show();
 	}
 	
+	/**
+	 * A method like this would normally live in an imported library. It's
+	 * available to constrain all object's location to be within the
+	 * game window.
+	 */
+	public static int clamp(int currentValue, int min, int max) {
+		return Math.max(min, Math.min(max, currentValue));
+	}
+	
 	public static void main(String arg[]) {
 		new Game();
 	}
