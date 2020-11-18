@@ -33,6 +33,10 @@ public class Spawn {
 			
 			if(hud.getLevel() == 2) {
 				new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
+			} else if(hud.getLevel() == 3) {
+				new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);				
+			} else if(hud.getLevel() == 4) {
+				new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.FastEnemy, handler);
 			}
 		}
 	}

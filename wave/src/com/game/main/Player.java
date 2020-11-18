@@ -32,7 +32,7 @@ public class Player extends GameObject {
 			 * Check for intersections between this Player object
 			 * and all BasicEnemy objects on screen.
 			 */
-			if(o.getID() == ID.BasicEnemy) {
+			if(o.getID() == ID.BasicEnemy || o.getID() == ID.FastEnemy) {
 				if(getBounds().intersects(o.getBounds())) {
 					HUD.HEALTH -= 2;
 				}

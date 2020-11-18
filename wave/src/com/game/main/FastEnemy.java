@@ -9,8 +9,8 @@ public class FastEnemy extends GameObject {
 	public FastEnemy(int x, int y, ID id, Handler handler) {
 		super(x, y, id, handler);
 		
-		velX = 4;
-		velY = 4;
+		velX = 2;
+		velY = 8;
 	}
 	
 	public Rectangle getBounds() {
@@ -31,12 +31,12 @@ public class FastEnemy extends GameObject {
 		 * Fire off Trail objects that will slowly fade out in their place as
 		 * the BasicEnemy moves around the screen.
 		 */
-		new Trail(x, y, ID.Trail, Color.red, 16, 16, 0.01f, handler);
+		new Trail(x, y, ID.Trail, Color.cyan, 16, 16, 0.01f, handler);
 		
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.red);
+		g.setColor(Color.cyan);
 		g.fillRect(x, y, 16, 16);
 	}
 
