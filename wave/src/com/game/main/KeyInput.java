@@ -12,12 +12,9 @@ public class KeyInput extends KeyAdapter {
 	
 	/**
 	 * Control mechanisms for fixing the system delay when changing
-	 * opposite directions.
+	 * opposite directions. TODO Make this a hash instead.
 	 */
-	private boolean upPress = false;
-	private boolean leftPress = false;
-	private boolean downPress = false;
-	private boolean rightPress = false;
+	private boolean[] keyPress = new boolean[4];
 	
 	public KeyInput(Handler handler) {
 		this.handler = handler;
@@ -36,19 +33,19 @@ public class KeyInput extends KeyAdapter {
 			
 			if(o.getID() == ID.Player) {
 				if(key == KeyEvent.VK_W) {
-					upPress = true;
+					keyPress[0] = true;
 					o.setVelY(-4);
 				}
 				if(key == KeyEvent.VK_A) {
-					leftPress = true;
+					keyPress[1] = true;
 					o.setVelX(-4);
 				}
 				if(key == KeyEvent.VK_S) {
-					downPress = true;
+					keyPress[2] = true;
 					o.setVelY(4);
 				}
 				if(key == KeyEvent.VK_D) {
-					rightPress = true;
+					keyPress[3] = true;
 					o.setVelX(4);
 				}
 			}
@@ -65,39 +62,18 @@ public class KeyInput extends KeyAdapter {
 			GameObject o = handler.object.get(i);
 			
 			if(o.getID() == ID.Player) {
-				if(key == KeyEvent.VK_W) {
-					upPress = false;
-					if(downPress) {
-						o.setVelY(4);
-					} else {
-						o.setVelY(0);
-					}
-				}
-				if(key == KeyEvent.VK_A) {
-					leftPress = false;
-					if(rightPress) {
-						o.setVelX(4);
-					} else {
-						o.setVelX(0);
-					}
-				}
-				if(key == KeyEvent.VK_S) {
-					downPress = false;
-					if(upPress) {
-						o.setVelY(-4);
-					} else {
-						o.setVelY(0);
-					}
-				}
-				if(key == KeyEvent.VK_D) {
-					rightPress = false;
-					if(leftPress) {
-						o.setVelX(-4);
-					} else {
-						o.setVelX(0);
-					}
-				}
+				if(key == KeyEvent.VK_W) keyPress[0] = false;
+				if(key == KeyEvent.VK_A) keyPress[1] = false;
+				if(key == KeyEvent.VK_S) keyPress[2] = false;
+				if(key == KeyEvent.VK_D) keyPress[3] = false;
 			}
+				
+			/**
+			 * Shut down vertical and horizontal movement if the appropriate
+			 * pair of keys are both released.
+			 */
+			if(!keyPress[0] && !keyPress[2]) o.setVelY(0);
+			if(!keyPress[1] && !keyPress[3]) o.setVelX(0);
 		}
 	}
 	
