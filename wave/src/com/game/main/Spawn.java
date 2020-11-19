@@ -27,7 +27,7 @@ public class Spawn {
 	public void tick() {
 		scoreKeep++;
 		
-		if(scoreKeep >= 1000) {
+		if(scoreKeep >= 250) {
 			scoreKeep = 0;
 			hud.setLevel(hud.getLevel() + 1);
 			
@@ -37,6 +37,8 @@ public class Spawn {
 				new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);				
 			} else if(hud.getLevel() == 4) {
 				new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.FastEnemy, handler);
+			} else if(hud.getLevel() == 5) {
+				new SmartEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.SmartEnemy, handler);
 			}
 		}
 	}

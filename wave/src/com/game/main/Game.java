@@ -170,7 +170,7 @@ public class Game extends Canvas implements Runnable {
 	 * available to constrain all object's location to be within the
 	 * game window.
 	 */
-	public static int clamp(int currentValue, int min, int max) {
+	public static float clamp(float currentValue, float min, float max) {
 		return Math.max(min, Math.min(max, currentValue));
 	}
 	

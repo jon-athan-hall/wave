@@ -16,12 +16,12 @@ public abstract class GameObject {
 	 * Protected methods and variables are accessible from within this
 	 * class as well as subclasses that extend this class.
 	 */
-	protected int x, y;
+	protected float x, y;
 	protected ID id;
-	protected int velX, velY;
+	protected float velX, velY;
 	protected Handler handler;
 	
-	public GameObject(int x, int y, ID id, Handler handler) {
+	public GameObject(float x, float y, ID id, Handler handler) {
 		this.x = x;
 		this.y = y;
 		this.id = id;
@@ -48,11 +48,11 @@ public abstract class GameObject {
 	 * all the same no matter the subclass, therefore they can be defined
 	 * here in the superclass.
 	 */
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 	
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 	
@@ -60,19 +60,19 @@ public abstract class GameObject {
 		return id;
 	}
 	
-	public int getVelX() {
+	public float getVelX() {
 		return velX;
 	}
 	
-	public int getVelY() {
+	public float getVelY() {
 		return velY;
 	}
 	
-	public void setX(int x) {
+	public void setX(float x) {
 		this.x = x;
 	}
 	
-	public void setY(int y) {
+	public void setY(float y) {
 		this.y = y;
 	}
 	
@@ -80,11 +80,11 @@ public abstract class GameObject {
 		this.id = id;
 	}
 	
-	public void setVelX(int velX) {
+	public void setVelX(float velX) {
 		this.velX = velX;
 	}
 	
-	public void setVelY(int velY) {
+	public void setVelY(float velY) {
 		this.velY = velY;
 	}
 	

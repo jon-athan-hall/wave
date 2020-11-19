@@ -66,14 +66,14 @@ public class KeyInput extends KeyAdapter {
 				if(key == KeyEvent.VK_A) keyPress[1] = false;
 				if(key == KeyEvent.VK_S) keyPress[2] = false;
 				if(key == KeyEvent.VK_D) keyPress[3] = false;
-			}
 				
-			/**
-			 * Shut down vertical and horizontal movement if the appropriate
-			 * pair of keys are both released.
-			 */
-			if(!keyPress[0] && !keyPress[2]) o.setVelY(0);
-			if(!keyPress[1] && !keyPress[3]) o.setVelX(0);
+				/**
+				 * Shut down vertical and horizontal movement if the appropriate
+				 * pair of keys are both released.
+				 */
+				if(!keyPress[0] && !keyPress[2]) o.setVelY(0);
+				if(!keyPress[1] && !keyPress[3]) o.setVelX(0);
+			}
 		}
 	}
 	
