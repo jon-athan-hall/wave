@@ -1,6 +1,7 @@
 package com.game.main;
 
 import java.awt.Graphics;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -14,28 +15,40 @@ public class Handler {
 	 * the previous and next items. Preferred to ArrayList because
 	 * of all the item manipulation to be done.
 	 */
-	LinkedList<GameObject> object = new LinkedList<GameObject>();
+	LinkedList<GameObject> objects = new LinkedList<GameObject>();
 	
 	public void tick() {
-		for(int i = 0; i < object.size(); i++) {
-			GameObject o = object.get(i);
+		for(int i = 0; i < objects.size(); i++) {
+			GameObject o = objects.get(i);
 			o.tick();
 		}
 	}
 	
 	public void render(Graphics g) {
-		for(int i = 0; i < object.size(); i++) {
-			GameObject o = object.get(i);
+		for(int i = 0; i < objects.size(); i++) {
+			GameObject o = objects.get(i);
 			o.render(g);
 		}
 	}
 	
 	public void addObject(GameObject o) {
-		this.object.add(o);
+		this.objects.add(o);
 	}
 	
 	public void removeObject(GameObject o) {
-		this.object.remove(o);
+		this.objects.remove(o);
+	}
+	
+	/**
+	 * Iterates through all GameObjects and removes everything
+	 * except for the Player object.
+	 */
+	public void clearEnemies() {
+		Iterator<GameObject> i = this.objects.iterator();
+		while(i.hasNext()) {
+			GameObject o = i.next();
+			if(o.getID() != ID.Player) i.remove();
+		}
 	}
 	
 }

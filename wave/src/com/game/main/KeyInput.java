@@ -28,8 +28,8 @@ public class KeyInput extends KeyAdapter {
 		/**
 		 * Loop through all GameObjects and assign key events accordingly.
 		 */
-		for(int i = 0; i < handler.object.size(); i++) {
-			GameObject o = handler.object.get(i);
+		for(int i = 0; i < handler.objects.size(); i++) {
+			GameObject o = handler.objects.get(i);
 			
 			if(o.getID() == ID.Player) {
 				if(key == KeyEvent.VK_W) {
@@ -58,8 +58,8 @@ public class KeyInput extends KeyAdapter {
 		/**
 		 * Loop through all GameObjects and assign key events accordingly.
 		 */
-		for(int i = 0; i < handler.object.size(); i++) {
-			GameObject o = handler.object.get(i);
+		for(int i = 0; i < handler.objects.size(); i++) {
+			GameObject o = handler.objects.get(i);
 			
 			if(o.getID() == ID.Player) {
 				if(key == KeyEvent.VK_W) keyPress[0] = false;

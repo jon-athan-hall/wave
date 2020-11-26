@@ -25,8 +25,8 @@ public class Player extends GameObject {
 	}
 	
 	private void checkCollisions() {
-		for(int i = 0; i < handler.object.size(); i++) {
-			GameObject o = handler.object.get(i);
+		for(int i = 0; i < handler.objects.size(); i++) {
+			GameObject o = handler.objects.get(i);
 			
 			/**
 			 * Check for intersections between this Player object
