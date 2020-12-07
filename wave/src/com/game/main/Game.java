@@ -8,6 +8,7 @@ import java.util.Random;
 
 /**
  * Main class where everything is controlled and drawn.
+ * 
  * @author Jonathan
  */
 public class Game extends Canvas implements Runnable {
@@ -27,22 +28,24 @@ public class Game extends Canvas implements Runnable {
 	
 	public enum STATE {
 		Menu,
-		Game
+		Game,
+		Help
 	};
 	
 	public STATE gameState = STATE.Menu;
 	
 	public Game() {
 		handler = new Handler();
+		menu = new Menu(this, handler);
 		
 		this.addKeyListener(new KeyInput(handler));
+		this.addMouseListener(menu);
 		
 		new Window(WIDTH, HEIGHT, "Wave", this);
 		
 		r = new Random();
 		hud = new HUD();
 		spawn = new Spawn(handler, hud);
-		menu = new Menu();
 		
 		if(gameState == STATE.Game) { 
 			new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler);
@@ -166,7 +169,7 @@ public class Game extends Canvas implements Runnable {
 		 */
 		if(gameState == STATE.Game) {
 			hud.render(g);
-		} else if (gameState == STATE.Menu) {
+		} else if (gameState == STATE.Menu || gameState == STATE.Help) {
 			menu.render(g);
 		}
 		
