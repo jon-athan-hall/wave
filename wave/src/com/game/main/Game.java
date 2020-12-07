@@ -25,6 +25,13 @@ public class Game extends Canvas implements Runnable {
 	private HUD hud;
 	private Spawn spawn;
 	
+	public enum STATE {
+		Menu,
+		Game
+	};
+	
+	public STATE gameState = STATE.Menu;
+	
 	public Game() {
 		handler = new Handler();
 		
@@ -36,8 +43,10 @@ public class Game extends Canvas implements Runnable {
 		hud = new HUD();
 		spawn = new Spawn(handler, hud);
 		
-		new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler);
-		new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
+		if(gameState == STATE.Game) { 
+			new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler);
+			new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
+		}
 	}
 
 	/**
@@ -118,8 +127,11 @@ public class Game extends Canvas implements Runnable {
 	 */
 	private void tick() {
 		handler.tick();
-		hud.tick();
-		spawn.tick();
+		
+		if(gameState == STATE.Game) { 
+			hud.tick();
+			spawn.tick();
+		}
 	}
 	
 	private void render() {
@@ -149,7 +161,9 @@ public class Game extends Canvas implements Runnable {
 		 * Order does matter here. The HUD will now appear on top of
 		 * the GameObjects in handler.
 		 */
-		hud.render(g);
+		if(gameState == STATE.Game) {
+			hud.render(g);
+		}
 		
 		/**
 		 * Graphics object can no longer be used after dispose is called
