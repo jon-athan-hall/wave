@@ -9,7 +9,6 @@ import java.util.Random;
 /**
  * Main class where everything is controlled and drawn.
  * @author Jonathan
- *
  */
 public class Game extends Canvas implements Runnable {
 	
@@ -24,6 +23,7 @@ public class Game extends Canvas implements Runnable {
 	private Random r;
 	private HUD hud;
 	private Spawn spawn;
+	private Menu menu;
 	
 	public enum STATE {
 		Menu,
@@ -42,6 +42,7 @@ public class Game extends Canvas implements Runnable {
 		r = new Random();
 		hud = new HUD();
 		spawn = new Spawn(handler, hud);
+		menu = new Menu();
 		
 		if(gameState == STATE.Game) { 
 			new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler);
@@ -131,6 +132,8 @@ public class Game extends Canvas implements Runnable {
 		if(gameState == STATE.Game) { 
 			hud.tick();
 			spawn.tick();
+		} else if(gameState == STATE.Menu) {
+			menu.tick();
 		}
 	}
 	
@@ -163,6 +166,8 @@ public class Game extends Canvas implements Runnable {
 		 */
 		if(gameState == STATE.Game) {
 			hud.render(g);
+		} else if (gameState == STATE.Menu) {
+			menu.render(g);
 		}
 		
 		/**
