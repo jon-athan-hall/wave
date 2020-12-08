@@ -50,6 +50,10 @@ public class Game extends Canvas implements Runnable {
 		if(gameState == STATE.Game) { 
 			new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler);
 			new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
+		} else {
+			for(int i = 0; i < 10; i++) {
+				new MenuParticle(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.MenuParticle, handler);
+			}
 		}
 	}
 

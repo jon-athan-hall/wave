@@ -40,6 +40,7 @@ public class Menu extends MouseAdapter {
 			if(mouseOver(mx, my, 50, 100, 200, 50)) {
 				game.gameState = STATE.Game;
 				new Player(Game.WIDTH / 2 - 32, Game.HEIGHT / 2 - 32, ID.Player, handler);
+				handler.clearEnemies();
 				new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
 			}
 			
@@ -106,7 +107,7 @@ public class Menu extends MouseAdapter {
 			
 			g.setFont(menuFont);
 			g.setColor(Color.white);
-			g.drawString("Menu", 50, 75);
+			g.drawString("Wave", 50, 75);
 			
 			g.setFont(buttonFont);
 			g.drawRect(50, 100, 200, 50);
