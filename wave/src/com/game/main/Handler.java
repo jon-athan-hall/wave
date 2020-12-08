@@ -41,13 +41,14 @@ public class Handler {
 	
 	/**
 	 * Iterates through all GameObjects and removes everything
-	 * except for the Player object.
+	 * except for the Player object. Removes Player object too if
+	 * the Game is over.
 	 */
 	public void clearEnemies() {
 		Iterator<GameObject> i = this.objects.iterator();
 		while(i.hasNext()) {
 			GameObject o = i.next();
-			if(o.getID() != ID.Player) i.remove();
+			if(o.getID() != ID.Player || Game.gameState == Game.STATE.End) i.remove();
 		}
 	}
 	
