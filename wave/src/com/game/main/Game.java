@@ -141,9 +141,14 @@ public class Game extends Canvas implements Runnable {
 			hud.tick();
 			spawn.tick();
 			
+			/**
+			 * If the Player health has dropped to 0 or less, then
+			 * change the game state, clear the entire screen of
+			 * objects, and reset the health to 100.
+			 */
 			if(HUD.HEALTH <= 0) {
 				gameState = STATE.End;
-				handler.clearEnemies();
+				handler.objects.clear();
 				HUD.HEALTH = 100;
 				for(int i = 0; i < 10; i++) {
 					new MenuParticle(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.MenuParticle, handler);

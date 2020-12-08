@@ -65,6 +65,22 @@ public class Menu extends MouseAdapter {
 				 * Back button clicked.
 				 */
 				Game.gameState = STATE.Menu;
+				return;
+			}
+		}
+		
+		if(Game.gameState == STATE.End) {
+			if(mouseOver(mx, my, 50, 250, 200, 50)) {
+				/**
+				 * Try Again button clicked. Reset the level and score. Make a new
+				 * Player object and clear all enemies except the basic starter enemy.
+				 */
+				Game.gameState = STATE.Game;
+				hud.setLevel(1);
+				hud.setScore(0);
+				new Player(Game.WIDTH / 2 - 32, Game.HEIGHT / 2 - 32, ID.Player, handler);
+				handler.clearEnemies();
+				new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
 			}
 		}
 	}

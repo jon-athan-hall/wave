@@ -15,7 +15,7 @@ public class MenuParticle extends GameObject {
 		super(x, y, id, handler);
 		
 		/**
-		 * Random colors and velocities for menu design.
+		 * Random colors and velocities for menu particle effects.
 		 */
 		velX = (r.nextInt(5 - -5) + -5);
 		if(velX == 0) velX = 1;
