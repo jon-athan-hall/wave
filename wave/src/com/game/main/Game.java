@@ -20,6 +20,8 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;
 	
+	public static boolean paused = false;
+	
 	private Handler handler;
 	private Random r;
 	private HUD hud;
@@ -40,7 +42,7 @@ public class Game extends Canvas implements Runnable {
 		hud = new HUD();
 		menu = new Menu(this, handler, hud);
 		
-		this.addKeyListener(new KeyInput(handler));
+		this.addKeyListener(new KeyInput(handler, this));
 		this.addMouseListener(menu);
 		
 		AudioPlayer.load();
@@ -138,27 +140,30 @@ public class Game extends Canvas implements Runnable {
 	 * Private methods are available to the current class only.
 	 */
 	private void tick() {
-		handler.tick();
-		
+	
 		if(gameState == STATE.Game) { 
-			hud.tick();
-			spawn.tick();
-			
-			/**
-			 * If the Player health has dropped to 0 or less, then
-			 * change the game state, clear the entire screen of
-			 * objects, and reset the health to 100.
-			 */
-			if(HUD.HEALTH <= 0) {
-				gameState = STATE.End;
-				handler.objects.clear();
-				HUD.HEALTH = 100;
-				for(int i = 0; i < 10; i++) {
-					new MenuParticle(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.MenuParticle, handler);
+			if(!paused) {
+				hud.tick();
+				spawn.tick();
+				handler.tick();
+				
+				/**
+				 * If the Player health has dropped to 0 or less, then
+				 * change the game state, clear the entire screen of
+				 * objects, and reset the health to 100.
+				 */
+				if(HUD.HEALTH <= 0) {
+					gameState = STATE.End;
+					handler.objects.clear();
+					HUD.HEALTH = 100;
+					for(int i = 0; i < 10; i++) {
+						new MenuParticle(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.MenuParticle, handler);
+					}
 				}
 			}
 		} else if(gameState == STATE.Menu || gameState == STATE.End) {
 			menu.tick();
+			handler.tick();
 		}
 	}
 	
@@ -184,6 +189,11 @@ public class Game extends Canvas implements Runnable {
 		g.fillRect(0,  0,  WIDTH,  HEIGHT);
 		
 		handler.render(g);
+		
+		if(paused) {
+			g.setColor(Color.white);
+			g.drawString("PAUSED", 16, 96);
+		}
 		
 		/**
 		 * Order does matter here. The HUD will now appear on top of

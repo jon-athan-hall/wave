@@ -2,6 +2,9 @@ package com.game.main;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
+
+import com.game.main.Game.STATE;
 
 public class KeyInput extends KeyAdapter {
 	
@@ -9,6 +12,7 @@ public class KeyInput extends KeyAdapter {
 	 * An instance of the Game's Handler is needed for key events.
 	 */
 	private Handler handler;
+	Game game;
 	
 	/**
 	 * Control mechanisms for fixing the system delay when changing
@@ -16,14 +20,14 @@ public class KeyInput extends KeyAdapter {
 	 */
 	private boolean[] keyPress = new boolean[4];
 	
-	public KeyInput(Handler handler) {
+	public KeyInput(Handler handler, Game game) {
 		this.handler = handler;
+		this.game = game;
+		Arrays.fill(keyPress, false);
 	}
 
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		
-		if(key == KeyEvent.VK_ESCAPE) System.exit(1);
 		
 		/**
 		 * Loop through all GameObjects and assign key events accordingly.
@@ -50,6 +54,17 @@ public class KeyInput extends KeyAdapter {
 				}
 			}
 		}
+		
+		/**
+		 * Toggle the pause state with the P key, but only while playing.
+		 */
+		if(key == KeyEvent.VK_P) {
+			if(Game.gameState == STATE.Game) {
+				Game.paused = !Game.paused;
+			}
+		}
+		
+		if(key == KeyEvent.VK_ESCAPE) System.exit(1);
 	}
 	
 	public void keyReleased(KeyEvent e) {
