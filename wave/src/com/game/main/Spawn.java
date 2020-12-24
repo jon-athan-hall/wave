@@ -8,6 +8,7 @@ public class Spawn {
 	 * These could be static variables elsewhere and then there would be
 	 * no need to create them here to be assigned via the constructor.
 	 */
+	private Game game;
 	private Handler handler;
 	private HUD hud;
 	private Random r = new Random();
@@ -19,7 +20,8 @@ public class Spawn {
 	 */
 	private int scoreKeep = 0;
 	
-	public Spawn(Handler handler, HUD hud) {
+	public Spawn(Game game, Handler handler, HUD hud) {
+		this.game = game;
 		this.handler = handler;
 		this.hud = hud;
 	}
@@ -31,25 +33,48 @@ public class Spawn {
 			scoreKeep = 0;
 			hud.setLevel(hud.getLevel() + 1);
 			
-			if(hud.getLevel() == 2) {
-				new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
-			} else if(hud.getLevel() == 3) {
-				new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);				
-			} else if(hud.getLevel() == 4) {
-				new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.FastEnemy, handler);
-			} else if(hud.getLevel() == 5) {
-				new SmartEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.SmartEnemy, handler);
-			} else if(hud.getLevel() == 6) {
-				new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);				
-			} else if(hud.getLevel() == 7) {
-				new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
-			} else if(hud.getLevel() == 8) {
-				new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
-			} else if(hud.getLevel() == 9) {
-				new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.FastEnemy, handler);				
-			} else if(hud.getLevel() == 10) {
-				handler.clearEnemies();
-				new BossEnemy(Game.WIDTH / 2 - 48, -96, ID.BossEnemy, handler);
+			if(game.difficulty == 0) {
+				if(hud.getLevel() == 2) {
+					new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
+				} else if(hud.getLevel() == 3) {
+					new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);				
+				} else if(hud.getLevel() == 4) {
+					new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.FastEnemy, handler);
+				} else if(hud.getLevel() == 5) {
+					new SmartEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.SmartEnemy, handler);
+				} else if(hud.getLevel() == 6) {
+					new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);				
+				} else if(hud.getLevel() == 7) {
+					new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
+				} else if(hud.getLevel() == 8) {
+					new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
+				} else if(hud.getLevel() == 9) {
+					new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.FastEnemy, handler);				
+				} else if(hud.getLevel() == 10) {
+					handler.clearEnemies();
+					new BossEnemy(Game.WIDTH / 2 - 48, -96, ID.BossEnemy, handler);
+				}
+			} else if(game.difficulty == 1) {
+				if(hud.getLevel() == 2) {
+					new HardEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
+				} else if(hud.getLevel() == 3) {
+					new HardEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);				
+				} else if(hud.getLevel() == 4) {
+					new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.FastEnemy, handler);
+				} else if(hud.getLevel() == 5) {
+					new SmartEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.SmartEnemy, handler);
+				} else if(hud.getLevel() == 6) {
+					new HardEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);				
+				} else if(hud.getLevel() == 7) {
+					new HardEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
+				} else if(hud.getLevel() == 8) {
+					new HardEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler);
+				} else if(hud.getLevel() == 9) {
+					new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.FastEnemy, handler);				
+				} else if(hud.getLevel() == 10) {
+					handler.clearEnemies();
+					new BossEnemy(Game.WIDTH / 2 - 48, -96, ID.BossEnemy, handler);
+				}
 			}
 		}
 	}

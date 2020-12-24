@@ -21,6 +21,7 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	
 	public static boolean paused = false;
+	public int difficulty = 0;
 	
 	private Handler handler;
 	private Random r;
@@ -30,6 +31,7 @@ public class Game extends Canvas implements Runnable {
 	
 	public enum STATE {
 		Menu,
+		Select,
 		Game,
 		Help,
 		End
@@ -51,7 +53,7 @@ public class Game extends Canvas implements Runnable {
 		new Window(WIDTH, HEIGHT, "Wave", this);
 		
 		r = new Random();
-		spawn = new Spawn(handler, hud);
+		spawn = new Spawn(this, handler, hud);
 		
 		if(gameState == STATE.Game) { 
 			new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler);
@@ -161,7 +163,7 @@ public class Game extends Canvas implements Runnable {
 					}
 				}
 			}
-		} else if(gameState == STATE.Menu || gameState == STATE.End) {
+		} else if(gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Select) {
 			menu.tick();
 			handler.tick();
 		}
@@ -201,7 +203,7 @@ public class Game extends Canvas implements Runnable {
 		 */
 		if(gameState == STATE.Game) {
 			hud.render(g);
-		} else if (gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End) {
+		} else if (gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End || gameState == STATE.Select) {
 			menu.render(g);
 		}
 		
