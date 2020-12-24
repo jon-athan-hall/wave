@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="res">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Jonathan/Documents/java/libraries/jars/jinput.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jonathan/Documents/java/libraries/jars/jogg-0.0.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jonathan/Documents/java/libraries/jars/jorbis-0.0.15.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jonathan/Documents/java/libraries/jars/lwjgl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Jonathan/Documents/java/libraries/lwjgl/native/windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Jonathan/Documents/java/libraries/jars/slick.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
