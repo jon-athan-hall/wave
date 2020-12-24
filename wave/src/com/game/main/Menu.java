@@ -113,7 +113,7 @@ public class Menu extends MouseAdapter {
 				 * Player object and clear all enemies except the basic starter enemy.
 				 */
 				AudioPlayer.getSound("select").play();
-				Game.gameState = STATE.Game;
+				Game.gameState = STATE.Menu;
 				hud.setLevel(1);
 				hud.setScore(0);
 				new Player(Game.WIDTH / 2 - 32, Game.HEIGHT / 2 - 32, ID.Player, handler);
