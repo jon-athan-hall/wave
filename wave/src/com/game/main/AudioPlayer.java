@@ -17,7 +17,7 @@ public class AudioPlayer {
 	 */
 	public static void load() {
 		try {
-			soundMap.put("menu_sound", new Sound("res/beep.ogg"));
+			soundMap.put("select", new Sound("res/beep.ogg"));
 			musicMap.put("music", new Music("res/moonlight_sonata_music_loop.ogg"));
 		} catch (SlickException e) {
 			e.printStackTrace();

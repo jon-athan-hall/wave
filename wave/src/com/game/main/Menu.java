@@ -38,6 +38,7 @@ public class Menu extends MouseAdapter {
 			 * Play button clicked.
 			 */
 			if(mouseOver(mx, my, 50, 100, 200, 50)) {
+				AudioPlayer.getSound("select").play();
 				Game.gameState = STATE.Game;
 				new Player(Game.WIDTH / 2 - 32, Game.HEIGHT / 2 - 32, ID.Player, handler);
 				handler.clearEnemies();
@@ -48,6 +49,7 @@ public class Menu extends MouseAdapter {
 			 * Help button clicked.
 			 */
 			if(mouseOver(mx, my, 50, 175, 200, 50)) {
+				AudioPlayer.getSound("select").play();
 				Game.gameState = STATE.Help;
 			}
 			
@@ -64,6 +66,7 @@ public class Menu extends MouseAdapter {
 				/**
 				 * Back button clicked.
 				 */
+				AudioPlayer.getSound("select").play();
 				Game.gameState = STATE.Menu;
 				return;
 			}
@@ -75,6 +78,7 @@ public class Menu extends MouseAdapter {
 				 * Try Again button clicked. Reset the level and score. Make a new
 				 * Player object and clear all enemies except the basic starter enemy.
 				 */
+				AudioPlayer.getSound("select").play();
 				Game.gameState = STATE.Game;
 				hud.setLevel(1);
 				hud.setScore(0);
