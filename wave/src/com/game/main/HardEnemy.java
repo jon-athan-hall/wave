@@ -29,15 +29,15 @@ public class HardEnemy extends GameObject {
 		 * Also make those new velocities random and therefore unpredictable.
 		 */
 		if(y < 0 || y >= Game.HEIGHT - 16) {
-			if(velY < 0) {
-				velY = -(r.nextInt(8) + 1) * -1;
+			if(velY <= 0) {
+				velY = r.nextInt(8) + 1;
 			} else {
 				velY = (r.nextInt(8) + 1) * -1;
 			}
 		}
 		if(x < 0 || x >= Game.WIDTH - 16) {
-			if(velX < 0) {
-				velX = -(r.nextInt(8) + 1) * -1;
+			if(velX <= 0) {
+				velX = r.nextInt(8) + 1;
 			} else {
 				velX = (r.nextInt(8) + 1) * -1;
 			}
