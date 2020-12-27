@@ -1,10 +1,12 @@
 package com.game.main;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 public class SmartEnemy extends GameObject {
+	
+	private BufferedImage enemyImage;
 	
 	/**
 	 * Used to give SmartEnemy something to chase.
@@ -13,6 +15,10 @@ public class SmartEnemy extends GameObject {
 
 	public SmartEnemy(int x, int y, ID id, Handler handler) {
 		super(x, y, id, handler);
+		
+		SpriteSheet ss = new SpriteSheet(Game.spriteSheet);
+		
+		enemyImage = ss.grabImage(4, 1, 16, 16);
 		
 		for(int i = 0; i < handler.objects.size(); i++) {
 			if (handler.objects.get(i).getID() == ID.Player) player = handler.objects.get(i); 
@@ -48,15 +54,14 @@ public class SmartEnemy extends GameObject {
 		
 		/**
 		 * Fire off Trail objects that will slowly fade out in their place as
-		 * the BasicEnemy moves around the screen.
+		 * the BasicEnemy moves around the screen. Removed for now.
 		 */
-		new Trail((int) x, (int) y, ID.Trail, Color.green, 16, 16, 0.01f, handler);
+		//new Trail((int) x, (int) y, ID.Trail, Color.green, 16, 16, 0.01f, handler);
 		
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.green);
-		g.fillRect((int) x, (int) y, 16, 16);
+		g.drawImage(enemyImage, (int) x, (int) y,  null);
 	}
 
 }

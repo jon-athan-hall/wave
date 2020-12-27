@@ -130,12 +130,12 @@ public class Menu extends MouseAdapter {
 	/**
 	 * Checks if coordinates fall within certain box dimensions.
 	 *
-	 * @param 	mx		the x-coordinate of the location to check
-	 * @param 	my		the y-coordinate of the location to check
-	 * @param 	x		the x-coordinate of the box
-	 * @param 	y		the y-coordinate of the box
-	 * @param 	width	the width of the box
-	 * @param 	height	the height of the box
+	 * @param mx		the x-coordinate of the location to check
+	 * @param my		the y-coordinate of the location to check
+	 * @param x			the x-coordinate of the box
+	 * @param y			the y-coordinate of the box
+	 * @param width		the width of the box
+	 * @param height	the height of the box
 	 * @return			whether or not the coordinates are within the box
 	 */
 	public boolean mouseOver(int mx, int my, int x, int y, int width, int height) {
