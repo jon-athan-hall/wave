@@ -38,19 +38,19 @@ public class KeyInput extends KeyAdapter {
 			if(o.getID() == ID.Player) {
 				if(key == KeyEvent.VK_W) {
 					keyPress[0] = true;
-					o.setVelY(-4);
+					o.setVelY(-handler.speed);
 				}
 				if(key == KeyEvent.VK_A) {
 					keyPress[1] = true;
-					o.setVelX(-4);
+					o.setVelX(-handler.speed);
 				}
 				if(key == KeyEvent.VK_S) {
 					keyPress[2] = true;
-					o.setVelY(4);
+					o.setVelY(handler.speed);
 				}
 				if(key == KeyEvent.VK_D) {
 					keyPress[3] = true;
-					o.setVelX(4);
+					o.setVelX(handler.speed);
 				}
 			}
 		}

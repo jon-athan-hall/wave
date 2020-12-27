@@ -62,7 +62,12 @@ public class Shop extends MouseAdapter {
 		 */
 		if(mx >= 100 && mx <= 200) {
 			if(my >= 100 && my <= 180) {
-				System.out.println("box 1");
+				if(hud.getScore() >= box1) {
+					hud.setScore(hud.getScore() - box1);
+					box1 += 1000;
+					hud.bounds += 20;
+					hud.HEALTH = 100 + (hud.bounds / 2); 
+				}
 			}
 		}
 		
@@ -71,7 +76,11 @@ public class Shop extends MouseAdapter {
 		 */
 		if(mx >= 250 && mx <= 350) {
 			if(my >= 100 && my <= 180) {
-				System.out.println("box 2");
+				if(hud.getScore() >= box2) {
+					hud.setScore(hud.getScore() - box2);
+					box2 += 1000;
+					handler.speed++;
+				}
 			}
 		}
 		
@@ -80,7 +89,11 @@ public class Shop extends MouseAdapter {
 		 */
 		if(mx >= 400 && mx <= 500) {
 			if(my >= 100 && my <= 180) {
-				System.out.println("box 3");
+				if(hud.getScore() >= box3) {
+					hud.setScore(hud.getScore() - box3);
+					hud.bounds += 20;
+					hud.HEALTH = 100 + (hud.bounds / 2); 
+				}
 			}
 		}
 	}

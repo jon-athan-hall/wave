@@ -17,6 +17,8 @@ public class Handler {
 	 */
 	LinkedList<GameObject> objects = new LinkedList<GameObject>();
 	
+	public int speed = 4;
+	
 	public void tick() {
 		for(int i = 0; i < objects.size(); i++) {
 			GameObject o = objects.get(i);

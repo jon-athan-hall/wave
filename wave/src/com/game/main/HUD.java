@@ -11,12 +11,13 @@ public class HUD {
 	 * object.
 	 */
 	public static float HEALTH = 100;
+	public int bounds = 0;
 	
 	private int score = 0;
 	private int level = 1;
 	
 	public void tick() {
-		HEALTH = Game.clamp(HEALTH, 0, 100);
+		HEALTH = Game.clamp(HEALTH, 0, 100 + (bounds / 2));
 		
 		score++;
 	}
@@ -32,7 +33,7 @@ public class HUD {
 		
 		g.fillRect(16, 16, (int) HEALTH * 2, 32);
 		g.setColor(Color.white);
-		g.drawRect(16, 16, 200, 32);
+		g.drawRect(16, 16, 200 + bounds, 32);
 		
 		g.drawString("Score: " + score, 16, 64);
 		g.drawString("Level: " + level, 16, 80);
