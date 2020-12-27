@@ -36,6 +36,7 @@ public class HUD {
 		
 		g.drawString("Score: " + score, 16, 64);
 		g.drawString("Level: " + level, 16, 80);
+		g.drawString("Click spacebar for Shop", 16, 96);
 	}
 	
 	public int getScore() {

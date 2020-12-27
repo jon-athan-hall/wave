@@ -64,6 +64,17 @@ public class KeyInput extends KeyAdapter {
 			}
 		}
 		
+		/**
+		 * Toggle the shop menu if in the game only.
+		 */
+		if(key == KeyEvent.VK_SPACE) {
+			if(Game.gameState == STATE.Game) {
+				Game.gameState = STATE.Shop;
+			} else if (Game.gameState == STATE.Shop) {
+				Game.gameState = STATE.Game;
+			}
+		}
+		
 		if(key == KeyEvent.VK_ESCAPE) System.exit(1);
 	}
 	

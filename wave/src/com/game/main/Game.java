@@ -27,6 +27,7 @@ public class Game extends Canvas implements Runnable {
 	private Handler handler;
 	private Random r;
 	private HUD hud;
+	private Shop shop;
 	private Spawn spawn;
 	private Menu menu;
 	
@@ -35,6 +36,7 @@ public class Game extends Canvas implements Runnable {
 		Select,
 		Game,
 		Help,
+		Shop,
 		End
 	};
 	
@@ -54,10 +56,12 @@ public class Game extends Canvas implements Runnable {
 		
 		handler = new Handler();
 		hud = new HUD();
+		shop = new Shop(handler, hud);
 		menu = new Menu(this, handler, hud);
 		
 		this.addKeyListener(new KeyInput(handler, this));
 		this.addMouseListener(menu);
+		this.addMouseListener(shop);
 		
 		AudioPlayer.load();
 		AudioPlayer.getMusic("music").loop();
@@ -206,7 +210,7 @@ public class Game extends Canvas implements Runnable {
 		
 		if(paused) {
 			g.setColor(Color.white);
-			g.drawString("PAUSED", 16, 96);
+			g.drawString("PAUSED", 16, 112);
 		}
 		
 		/**
@@ -215,8 +219,12 @@ public class Game extends Canvas implements Runnable {
 		 */
 		if(gameState == STATE.Game) {
 			hud.render(g);
+			handler.render(g);
+		} else if (gameState == STATE.Shop) {
+			shop.render(g);
 		} else if (gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End || gameState == STATE.Select) {
 			menu.render(g);
+			handler.render(g);
 		}
 		
 		/**
