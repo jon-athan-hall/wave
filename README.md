@@ -15,5 +15,5 @@ Holy hell does this need refactoring. All of the Enemy classes should inherit fr
 
 I would also tighten up the math. There are many hard-coded numbers that can be stored in various classes as attributes.
 
-## Set Up
+## Getting Started
 I did not create an installation file or an `.exe` file. Clone the entire repository and run it in your IDE.
